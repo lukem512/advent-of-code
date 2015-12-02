@@ -9,9 +9,8 @@
 
 using namespace std;
 
-int main (int argc, char** argv) {
-
-	// Read input file
+// Read input file
+std::string readFile (std::string filename) {
 	std::ifstream t("input");
 	std::string str;
 
@@ -23,6 +22,13 @@ int main (int argc, char** argv) {
 	            std::istreambuf_iterator<char>());
 
 	t.close();
+
+	return str;
+}
+
+int main (int argc, char** argv) {
+
+	string str = readFile("input");
 
 	int n = 0;
 	for (int i = 0; i < str.size(); i++) {
