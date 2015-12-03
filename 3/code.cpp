@@ -57,34 +57,66 @@ int main (int argc, char** argv) {
 
 	std::map<Coordinates, int> houses;
 
-	Coordinates coords;
+	Coordinates coords, coords_robo;
+
+	bool enableRoboSanta = true;
+	bool robo = false;
 
 	// First house
 	houses[coords]++;
 
+	if (enableRoboSanta) {
+		houses[coords_robo]++;
+	}
+
 	for (int i = 0; i < str.size(); i++) {
 		switch(str[i]) {
 			case '<':
-				coords.lat++;
+				if (enableRoboSanta && robo) {
+					coords_robo.lat++;
+				} else {
+					coords.lat++;
+				}
 			break;
 
 			case '>':
-				coords.lat--;
+				if (enableRoboSanta && robo) {
+					coords_robo.lat--;
+				} else {
+					coords.lat--;
+				}
 			break;
 
 			case '^':
-				coords.lon++;
+				if (enableRoboSanta && robo) {
+					coords_robo.lon++;
+				} else {
+					coords.lon++;
+				}				
 			break;
 
 			case 'v':
-				coords.lon--;
+				if (enableRoboSanta && robo) {
+					coords_robo.lon--;
+				} else {
+					coords.lon--;
+				}	
 			break;
 		}
 
-		houses[coords]++;
+		if (enableRoboSanta && robo) {
+			houses[coords_robo]++;
+			robo = false;
+		} else {
+			houses[coords]++;
+
+			if (enableRoboSanta) {
+				robo = true;
+			}
+		}
 	}
 
-	cout << "Santa delivered at least one present to " << houses.size() << " houses!" << endl;
+	cout << "Santa " << (enableRoboSanta ? "(and robo-santa) " : "") << "delivered at least one present to " << houses.size() << " houses!" << endl;
 
 	return 0;
 }
