@@ -31,12 +31,17 @@ int main (int argc, char** argv) {
 	string str = readFile("input");
 
 	int n = 0;
+        bool part2complete = false;
 	for (int i = 0; i < str.size(); i++) {
 		if (str[i] == '(') n++;
 		if (str[i] == ')') n--;
+                if (!part2complete && n < 0) {
+                    cout << "Santa entered the basement at character " << i+1 << endl;
+                    part2complete = true;
+                }
 	}
 
-	cout << n << std::endl;
+	cout << "Santa finished on floor " << n << std::endl;
 
 	return 0;
 }
