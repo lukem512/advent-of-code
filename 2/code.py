@@ -17,14 +17,14 @@ for line in lines:
 	# Compute slack
 	# 'area of the smallest side'
 	sides = [l*w, l*h, w*h]
-        sides = sorted(sides);
-        n += sides[0]
-        # Compute length of ribbon
-        # 'shortest distance around its sides'
-        lengths = [l, w, h]
-        lengths = sorted(lengths)
-        ribbon += 2*lengths[0] + 2*lengths[1]
-        # Compute length of bow
-        ribbon += l*w*h
+	sides = sorted(sides);
+	n += sides[0]
+    # Compute length of ribbon
+    # 'shortest distance around its sides'
+    lengths = [l, w, h]
+    lengths = sorted(lengths)
+    ribbon += 2*lengths[0] + 2*lengths[1]
+    # Compute length of bow
+    ribbon += l*w*h
 print n
 print ribbon
