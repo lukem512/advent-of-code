@@ -6,6 +6,7 @@
 
 lines = [line.rstrip('\n') for line in open('input')]
 n = 0
+ribbon = 0
 for line in lines:
 	dimensions = line.split('x')
 	# Compute area
@@ -16,5 +17,14 @@ for line in lines:
 	# Compute slack
 	# 'area of the smallest side'
 	sides = [l*w, l*h, w*h]
-	n += min(sides)
+        sides = sorted(sides);
+        n += sides[0]
+        # Compute length of ribbon
+        # 'shortest distance around its sides'
+        lengths = [l, w, h]
+        lengths = sorted(lengths)
+        ribbon += 2*lengths[0] + 2*lengths[1]
+        # Compute length of bow
+        ribbon += l*w*h
 print n
+print ribbon
