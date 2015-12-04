@@ -7,7 +7,7 @@
 $input = "yzbqklnj";
 $nNonce = 0;
 
-$nZeroes = 5;
+$nZeroes = 6;
 
 $found = false;
 while (!$found) {
