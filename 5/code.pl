@@ -11,29 +11,28 @@ my $file = 'input';
 open my $info, $file or die "Santa lost his list!";
 
 my $n = 0;
+my $found = 1;
 while(my $line = <$info>) {   
-	my $found = 1;
+    $found = 1;
 
-	# Check for vowels
-    if ($line =~ /((a|e|i|o|u)[a-z]*){3}/) {
+	# Check for a pair of any two letters that appears
+    # at least twice in the string without overlapping
+    # i.e. 'xyxy' or 'aabcdefgaa' but not 'aaa'
+    if ($line =~ /([a-z][a-z])[a-z]*\1+/) {
     	# Do nothing
     } else {
     	$found = 0;
     }
 
-	# Check for repeated pairs
-    if ($line =~ /([a-z])\1+/) {
-    	# Do nothing
+    # Check for at least one letter which repeats
+    # with exactly one letter between them
+    # i.e. 'xyx', 'abcdefeghi', 'efe' or 'aaa'
+    if ($line =~ /([a-z])[a-z]\1+/) {
+        # Do nothing
     } else {
-    	$found = 0;
+        $found = 0;
     }
 
-    # Check for rejected pairs
-    if ($line =~ /(ab)|(cd)|(pq)|(xy)/) {
-    	$found = 0;
-    }
-
-    # print $found;
     if ($found) {
     	$n++;
     }
