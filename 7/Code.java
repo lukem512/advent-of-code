@@ -55,7 +55,12 @@ public class Code {
 
     public static void main (String[] args) {
         Boolean debug = false;
+        Boolean part2 = true;
         Code c = new Code();
+
+        if (part2) {
+            c.queue("46065 -> b");
+        }
 
         File file = new File("input");
         try(BufferedReader br = new BufferedReader(new FileReader(file))) {
