@@ -17,6 +17,10 @@ public class Code {
         stack.add(g);
     }
 
+    public Boolean finished() {
+        return (stack.size() == 0);
+    }
+
     public void queue(String command) {
         String tokens[] = command.split(" ");
         if (command.lastIndexOf("NOT") != -1) {
@@ -51,8 +55,8 @@ public class Code {
 
     public static void main (String[] args) {
         Boolean debug = false;
-
         Code c = new Code();
+
         File file = new File("input");
         try(BufferedReader br = new BufferedReader(new FileReader(file))) {
             for(String line; (line = br.readLine()) != null; ) {
@@ -64,7 +68,7 @@ public class Code {
             System.err.print(e);
         }
 
-        for (int i = 0; i < 1000; i++) {
+        while (!c.finished()) {
             c.simulate(debug);
         }
 
