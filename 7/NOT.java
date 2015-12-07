@@ -1,3 +1,7 @@
+// Advent of Code, day 7
+// Luke Mitchell
+// github.com/lukem512
+
 import java.util.*;
 
 public class NOT extends Gate {
